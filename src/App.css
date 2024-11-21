@@ -7,6 +7,8 @@
   --light-yellow: #feffc6;
   --bright-yellow: #dfff63;
   --orange: #ff7901;
+  --red: #f87c72;
+  --green: #72f88f;
   --light-gray: #e8e8e8;
 }
 #root {
@@ -19,6 +21,4 @@
 body {
   background: var(--primary-background)
 }
-
-
 

@@ -18,8 +18,7 @@ function OnboardingCell() {
       >
         {isComplete ? "✔" : ""}
       </button>
-
-      Reach out to Brock to get picture taken for the blue nucleus website.
+      <span>Reach out to Brock to get picture taken for the blue nucleus website.</span>
     </td>
   );
 }

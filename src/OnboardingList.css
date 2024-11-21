@@ -5,7 +5,7 @@
 }
 
 .circle-checkbox {
-  background: red;
+  background: var(--red);
   margin-right: 30pt;
   height: 30pt;
   width: 30pt;
@@ -13,7 +13,7 @@
 }
 
 .circle-checkbox.complete {
-  background: green;
+  background: var(--green);
 }
 
 h1 {
@@ -40,6 +40,8 @@ tr:hover {
 }
 
 td {
+  display: flex;
+  align-items: center;
   height: 45pt;
   margin: 0;
   padding-left: 10pt;
