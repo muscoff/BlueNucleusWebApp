@@ -1,0 +1,68 @@
+.onboarding-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.circle-checkbox {
+  background: red;
+  margin-right: 30pt;
+  height: 30pt;
+  width: 30pt;
+  border-radius: 15pt; /* 1/2 of height & width produces a circle */
+}
+
+.circle-checkbox.complete {
+  background: green;
+}
+
+h1 {
+  font-size: 70pt;
+  color: var(--primary-text);
+}
+
+h2 {
+  padding-left: 10pt;
+  margin-top: 10pt;
+  margin-bottom: 2pt;
+}
+
+table {
+  width: 50vw;
+  border: 2px solid var(--primary-border); 
+  border-radius: 10pt; 
+  background: white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.9);
+}
+
+tr:hover {
+  background: var(--light-yellow)
+}
+
+td {
+  height: 45pt;
+  margin: 0;
+  padding-left: 10pt;
+  position: relative;
+  text-align: left;
+  border-bottom: 2px solid var(--primary-border);
+}
+
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* td::after {
+  content: ""; 
+  display: block;
+  width: 92%;
+  height: 2px; 
+  background-color: white;
+  margin: 0 auto; 
+  position: absolute;
+  bottom: 0; 
+  transform: translateX(4%);
+}
+*/
+
