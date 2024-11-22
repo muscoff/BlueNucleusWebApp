@@ -14,7 +14,6 @@ function OnboardingCell() {
       <button
         className={`circle-checkbox ${isComplete ? "complete" : ""}`}
         onClick={handleButtonClick}
-
       >
         {isComplete ? "✔" : ""}
       </button>

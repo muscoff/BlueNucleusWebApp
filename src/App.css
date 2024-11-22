@@ -19,6 +19,70 @@
 }
 
 body {
-  background: var(--primary-background)
+  background: var(--primary-background);
+  font-size: 14pt;
 }
 
+/* 
+ *
+ *
+ * Debugging Link Styles BELOW
+ *
+ *
+ * */
+.NavButtonContainer {
+  display: flex;
+  width: 250pt;
+  height: 100pt;
+  margin: 10pt;
+  align-items: center;
+  justify-content: center;
+  background: var(--orange);
+  border: 1px solid var(--primary-border);
+  border-radius: 8pt;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.NavButtonContainer:hover {
+  opacity: 0.8;
+  transform: scale(1.05); /* Slightly enlarges the element */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+  background-color: #f0f0f0;
+}
+
+a {
+  color: var(--primary-text);
+  font-style: bold;
+  font-size: 20pt;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-background);
+}
+.NavButtonGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-rows: repeat(2, auto);
+}
+
+.NavButtonContainer.one {
+  background: var(--purple);
+}
+.NavButtonContainer.two {
+  background: var(--orange);
+}
+.NavButtonContainer.three {
+  background: var(--light-purple);
+}
+.NavButtonContainer.four {
+  background: var(--bright-yellow);
+}
+.NavButtonContainer.five {
+  background: var(--green);
+}
+.NavButtonContainer.six {
+  background: var(--red);
+}
