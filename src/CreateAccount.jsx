@@ -30,13 +30,12 @@ function CreateAccount() {
 
   return (
     <>
-
       <h1 className="MyTitle">Create An Account</h1>
       <form onSubmit={handleSubmit} className="FormContainer">
         <div className="InputContainer">
-          <label>First Name: </label>
+          <label>First Name</label>
           <input
-
+            className="create-account-input"
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
@@ -45,9 +44,9 @@ function CreateAccount() {
         </div>
 
         <div className="InputContainer">
-          <label>Last Name: </label>
+          <label>Last Name</label>
           <input
-
+            className="create-account-input"
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
@@ -56,9 +55,20 @@ function CreateAccount() {
         </div>
 
         <div className="InputContainer">
-          <label>Github Account: </label>
+          <label>Email</label>
           <input
+            className="create-account-input"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
 
+        <div className="InputContainer">
+          <label>Github Account</label>
+          <input
+            className="create-account-input"
             type="text"
             value={github}
             onChange={(e) => setGithub(e.target.value)}
@@ -67,18 +77,9 @@ function CreateAccount() {
         </div>
 
         <div className="InputContainer">
-          <label>Email: </label>
+          <label>Password</label>
           <input
-
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="InputContainer">
-          <label>Password: </label>
-          <input
+            className="create-account-input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -86,7 +87,7 @@ function CreateAccount() {
           />
         </div>
 
-        <button type="submit">Create Account</button>
+        <button className="submit-button" type="submit">Create Account</button>
       </form>
     </>
   )

@@ -9,14 +9,17 @@ function NavButton({ location, idx }) {
 
 function Home() {
   return (
-    <div className="NavButtonGrid">
-      <NavButton location="/onboarding" idx="one" />
-      <NavButton location="/create-account" idx="two" />
-      <NavButton location="/tmp" idx="three" />
-      <NavButton location="/tmp" idx="four" />
-      <NavButton location="/tmp" idx="five" />
-      <NavButton location="/tmp" idx="six" />
-    </div>
+    <>
+      <h1>Blue Nucleus</h1>
+      <div className="NavButtonGrid">
+        <NavButton location="/onboarding" idx="one" />
+        <NavButton location="/create-account" idx="two" />
+        <NavButton location="/dashboard" idx="three" />
+        <NavButton location="/tmp" idx="four" />
+        <NavButton location="/tmp" idx="five" />
+        <NavButton location="/tmp" idx="six" />
+      </div>
+    </>
   );
 }
 

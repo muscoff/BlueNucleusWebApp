@@ -5,6 +5,7 @@
   color: rgba(255, 255, 255, 0.87);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  margin:0pt;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -22,7 +23,6 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   color: var(--primary-text);
@@ -40,30 +40,3 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
-input {
-    border: none;
-    border-bottom: 2px dashed var(--primary-border); 
-    outline: none; 
-    width: 200px; 
-    font-size: 16px; 
-    background-color: transparent; 
-}
-
-/* Input focus style */
-input:focus {
-    animation: flash-red 1s infinite; /* Apply the flashing red animation */
-}
-
-/* Flashing red animation */
-@keyframes flash-red {
-    0% {
-        border-bottom-color: #009e4f;
-    }
-    50% {
-        border-bottom-color: transparent;
-    }
-    100% {
-        border-bottom-color: #009e4f;
-    }
-} 

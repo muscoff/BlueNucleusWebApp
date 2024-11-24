@@ -1,5 +1,6 @@
 :root { 
   --primary-background: #f1e6d8;
+  --primary-darker-background: #c2b8ac;
   --primary-text: #1a1d20;
   --primary-border: #1a1d20;
   --purple: #bb99ff;
@@ -12,7 +13,7 @@
   --light-gray: #e8e8e8;
 }
 #root {
-  max-width: 1280px;
+  width: 90vw;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -30,6 +31,8 @@ body {
  *
  *
  * */
+
+
 .NavButtonContainer {
   display: flex;
   width: 250pt;
