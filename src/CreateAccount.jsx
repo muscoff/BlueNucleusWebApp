@@ -1,7 +1,12 @@
 import { useState } from "react";
-import "./CreateAccount.css"
+import { auth } from "./FirebaseApp";
+import { NavLink, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { db } from "./FirebaseApp";
+import { collection, addDoc } from "firebase/firestore";
 
 function CreateAccount() {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -12,19 +17,24 @@ function CreateAccount() {
 
   const [errors, setErrors] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // TODO: Handle submit
-    console.log({
-      firstName,
-      lastName,
-      email,
-      github,
-      hours,
-      password,
-      accessKey,
-    });
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      // Signed in
+      const user = userCredential.user;
+      console.log(db);
+      await addDoc(collection(db, "userInfo"), {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        github: github,
+      });
+      navigate("/login");
+    } catch (error) {
+      console.error("Error: ", error);
+    }
     setPassword("")
   };
 

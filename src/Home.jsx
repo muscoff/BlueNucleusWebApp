@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import "./App.css"
 
-function NavButton({ location, idx }) {
+function NavButton({ location, text, idx }) {
   return (
-    <Link to={`${location}`} className={`NavButtonContainer ${idx}`}>{location}</Link>
+    <Link to={`${location}`} className={`NavButtonContainer ${idx}`}>{text}</Link>
   );
 }
 
@@ -12,12 +12,12 @@ function Home() {
     <>
       <h1>Blue Nucleus</h1>
       <div className="NavButtonGrid">
-        <NavButton location="/onboarding" idx="one" />
-        <NavButton location="/create-account" idx="two" />
-        <NavButton location="/dashboard" idx="three" />
-        <NavButton location="/tmp" idx="four" />
-        <NavButton location="/tmp" idx="five" />
-        <NavButton location="/tmp" idx="six" />
+        <NavButton location="/onboarding" text="Onboarding" idx="one" />
+        <NavButton location="/wiki" text="Internal Wiki" idx="two" />
+        <NavButton location="/dashboard" text="Student Dashboard" idx="three" />
+        <NavButton location="/sign-in" text="Sign In" idx="four" />
+        <NavButton location="/create-account" text="Create Account" idx="five" />
+        <NavButton location="/tmp" text="Admin Dashboard" idx="six" />
       </div>
     </>
   );

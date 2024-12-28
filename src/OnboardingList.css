@@ -11,7 +11,7 @@
   margin-right: 15pt;
   height: 30pt;
   width: 30pt;
-  border-radius: 15pt; /* 1/2 of height & width produces a circle */
+  border-radius: 15pt;
 }
 
 .circle-checkbox:hover {

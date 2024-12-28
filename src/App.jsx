@@ -2,13 +2,13 @@ import './fonts.css';
 import './App.css';
 import Home from './Home.jsx';
 import CreateAccount from './CreateAccount.jsx';
+import SignIn from './SignIn.jsx'
 import OnboardingList from './OnboardingList.jsx';
 import EmployeeDashboard from './EmployeeDashboard.jsx';
+import Wiki from './Wiki.jsx'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
 const queryClient = new QueryClient({
-
   defaultOptions: {
     queries: {
       staleTime: Infinity,
@@ -17,7 +17,9 @@ const queryClient = new QueryClient({
   },
 });
 
+
 function App() {
+
   return (
     <>
       <BrowserRouter>
@@ -29,6 +31,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/onboarding" element={<OnboardingList />} />
             <Route path="/create-account" element={<CreateAccount />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/wiki" element={<Wiki />} />
+
             <Route path="/dashboard" element={<EmployeeDashboard />} />
           </Routes>
         </QueryClientProvider>

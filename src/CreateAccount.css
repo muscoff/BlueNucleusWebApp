@@ -59,7 +59,7 @@ label {
 }
 
 /* Input focus style */
-input:focus {
+.create-account-input:focus {
     animation: flash-color 2s ease-in-out infinite; /* Apply the flashing red animation */
 }
 
