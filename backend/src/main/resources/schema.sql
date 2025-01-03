@@ -1,0 +1,25 @@
+CREATE DATABASE IF NOT EXISTS `bluenucleus`;
+
+USE `bluenucleus`;
+
+CREATE TABLE IF NOT EXISTS `users` ( 
+  
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `firebase_id` VARCHAR(255) NOT NULL,
+  `username` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `first_name` VARCHAR(255) NOT NULL,
+  `last_name` VARCHAR(255) NOT NULL,
+  `github_username` VARCHAR(255) NOT NULL,
+  `active_status` BOOLEAN NOT NULL DEFAULT TRUE,
+  `is_admin` BOOLEAN NOT NULL DEFAULT FALSE,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (`id`)
+
+);
+
+-- CREATE USER IF NOT EXISTS 'user'@'localhost' IDENTIFIED BY 'password';
+
+-- GRANT ALL PRIVILEGES ON bluenucleus.* TO 'user'@'localhost' IDENTIFIED BY 'password';

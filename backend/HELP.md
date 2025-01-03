@@ -12,3 +12,15 @@ These additional references should also help you:
 
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
 
+### Dependency Documentation
+
+* Spring Boot
+* Spring Data JPA
+* Spring Data REST
+* Spring Security
+* Spring Web
+* Lombok
+* Jackson
+* MySQL Connector/J
+* Docker
+* Gradle 
