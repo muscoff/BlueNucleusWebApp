@@ -27,12 +27,10 @@ public class CreateAccountController {
   @PostMapping("/create")
   public ResponseEntity<User> createAccount(@RequestBody User user) {
     try {
-      logger.error("SUPR BAD MAXTHINGS STILL GOING");
+      logger.info("CREATING USER WITH DATA {}", user);
       User createdUser = userService.saveUser(user);
       return new ResponseEntity<>(createdUser, HttpStatus.CREATED); 
     } catch (Exception e) {
-      logger.info("SUPR BAD MAX");
-      logger.error("Error creating user", e);
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
     }
   }

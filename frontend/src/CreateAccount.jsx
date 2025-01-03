@@ -2,15 +2,13 @@ import { useState } from "react";
 import { auth } from "./FirebaseApp";
 import { NavLink, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { db } from "./FirebaseApp";
-import { collection, addDoc } from "firebase/firestore";
 
 function CreateAccount() {
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
-  const [github, setGithub] = useState("")
+  const [githubUsername, setGithubAccount] = useState("")
   const [hours, setHours] = useState("") // TODO: Make hours work correctly
   const [password, setPassword] = useState("")
   const [accessKey, setAccessKey] = useState("")
@@ -22,20 +20,47 @@ function CreateAccount() {
 
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password)
-      // Signed in
       const user = userCredential.user;
-      console.log(db);
-      await addDoc(collection(db, "userInfo"), {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        github: github,
-      });
-      navigate("/login");
+
+      const userPayload = {
+        firebaseId: user.uid,
+        username: user.email,
+        email,
+        firstName,
+        lastName,
+        githubUsername: githubUsername,
+        activeStatus: true,
+        isAdmin: false,
+      };
+
+      console.log("User Payload: ", JSON.stringify(userPayload));
+
+      const response = await fetch("http://localhost:8080/api/users/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userPayload),
+          credentials: "include",
+        });
+
+      if (response.ok) {
+        const createdUser = await response.json();
+        console.log("Created User: ", createdUser);
+        navigate("/login");
+      } else {
+
+        const error = await response.json();
+        console.error("Failed to create account in backend: ", error);
+        setErrors(error.message);
+      }
     } catch (error) {
       console.error("Error: ", error);
+      setErrors("Error creating account");
+    } finally {
+      setPassword("")
     }
-    setPassword("")
   };
 
   return (
@@ -80,8 +105,8 @@ function CreateAccount() {
           <input
             className="create-account-input"
             type="text"
-            value={github}
-            onChange={(e) => setGithub(e.target.value)}
+            value={githubUsername}
+            onChange={(e) => setGithubAccount(e.target.value)}
             required
           />
         </div>
