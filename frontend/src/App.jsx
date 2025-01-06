@@ -1,7 +1,7 @@
 import './fonts.css';
 import './App.css';
 import Home from './Home.jsx';
-import CreateAccount from './CreateAccount.jsx';
+import CreateAccountWrapper from './CreateAccountWrapper.jsx';
 import SignIn from './SignIn.jsx'
 import OnboardingList from './OnboardingList.jsx';
 import EmployeeDashboard from './EmployeeDashboard.jsx';
@@ -30,7 +30,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/onboarding" element={<OnboardingList />} />
-            <Route path="/create-account" element={<CreateAccount />} />
+            <Route path="/create-account" element={<CreateAccountWrapper />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/wiki" element={<Wiki />} />
 

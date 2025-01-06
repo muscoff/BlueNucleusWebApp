@@ -3,7 +3,7 @@ import { auth } from "./FirebaseApp";
 import { NavLink, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-function CreateAccount() {
+function CreateAccount({ onAccountCreation }) {
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
@@ -48,7 +48,9 @@ function CreateAccount() {
       if (response.ok) {
         const createdUser = await response.json();
         console.log("Created User: ", createdUser);
-        navigate("/login");
+        console.log("onAccountCreation prop: ", onAccountCreation);
+        onAccountCreation();
+        setTimeout(() => { navigate("/sign-in") }, 300000);
       } else {
 
         const error = await response.json();
@@ -71,6 +73,7 @@ function CreateAccount() {
           <label>First Name</label>
           <input
             className="create-account-input"
+            id="firstName"
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
@@ -82,6 +85,7 @@ function CreateAccount() {
           <label>Last Name</label>
           <input
             className="create-account-input"
+            id="lastName"
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
@@ -93,6 +97,7 @@ function CreateAccount() {
           <label>Email</label>
           <input
             className="create-account-input"
+            id="email"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -104,6 +109,7 @@ function CreateAccount() {
           <label>Github Account</label>
           <input
             className="create-account-input"
+            id="githubUsername"
             type="text"
             value={githubUsername}
             onChange={(e) => setGithubAccount(e.target.value)}
