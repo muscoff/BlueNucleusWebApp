@@ -39,3 +39,52 @@ npm install @mui/material @emotion/react @emotion/styled
 
 npm install @mui/icons-material
 ```
+
+## Project Structure
+* Backend - Java, Spring Boot, Spring Data JPA
+* Frontend - JS, React, Vite, React Router
+* CLI - Python, Click, Firebase Admin, MySQL Connector
+* Database - MySQL
+* Testing - Playwright
+
+## CLI 
+
+### Setup
+`python3 -m venv env`
+`source env/bin/activate`
+`pip install -r requirements.txt`
+
+## Integration Tests 
+Integration tests are written in Playwright.
+
+### References
+[Playwright Docs](https://playwright.dev/)
+
+### Usage
+Run Tests: `npx playwright test` or `npx playwright test --ui`
+List Tests: `npx playwright test --list`
+Open HTML Test Report: `npx playwright show-report`
+
+## Backend
+
+### Usage
+```
+cd backend
+./gradlew build    # builds the project
+./gradlew bootRun  # runs the project
+```
+
+### MySQL Example Usage
+```
+# Connect to MySQL with the root user
+mysql -u root -p
+
+# Use the bluenucleus database
+use bluenucleus;
+
+# Describes the users table
+desc users;
+
+# Select statement to inspect the users table
+SELECT * FROM users WHERE username = 'testuser12345';
+```
