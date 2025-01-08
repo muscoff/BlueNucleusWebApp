@@ -6,8 +6,11 @@ import SignIn from './SignIn.jsx'
 import OnboardingList from './OnboardingList.jsx';
 import EmployeeDashboard from './EmployeeDashboard.jsx';
 import Wiki from './Wiki.jsx'
+import Directory from './Directory/Directory.jsx'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -34,6 +37,7 @@ function App() {
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/wiki" element={<Wiki />} />
 
+            <Route path="/directory" element={<Directory />} />
             <Route path="/dashboard" element={<EmployeeDashboard />} />
           </Routes>
         </QueryClientProvider>

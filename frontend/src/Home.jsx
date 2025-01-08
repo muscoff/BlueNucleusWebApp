@@ -18,6 +18,7 @@ function Home() {
         <NavButton location="/sign-in" text="Sign In" idx="four" />
         <NavButton location="/create-account" text="Create Account" idx="five" />
         <NavButton location="/tmp" text="Admin Dashboard" idx="six" />
+        <NavButton location="/directory" text="Directory" idx="seven" />
       </div>
     </>
   );

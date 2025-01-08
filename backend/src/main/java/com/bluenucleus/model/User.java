@@ -35,6 +35,8 @@ public class User {
   @Column(name = "active_status", nullable = false)
   private boolean activeStatus;
   
+  // TODO:: isAdmin = true is in the frontend payload but is not being persisted to 
+  // to the database. This is a bug.
   @Column(name = "is_admin", nullable = false)
   private boolean isAdmin;
 

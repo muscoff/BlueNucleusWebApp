@@ -30,7 +30,7 @@ function CreateAccount({ onAccountCreation }) {
         lastName,
         githubUsername: githubUsername,
         activeStatus: true,
-        isAdmin: false,
+        isAdmin: true,
       };
 
       console.log("User Payload: ", JSON.stringify(userPayload));
