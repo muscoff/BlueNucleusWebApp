@@ -7,7 +7,7 @@ import OnboardingList from './OnboardingList.jsx';
 import EmployeeDashboard from './EmployeeDashboard.jsx';
 import Wiki from './Wiki.jsx'
 import Directory from './Directory/Directory.jsx'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 
@@ -21,14 +21,19 @@ const queryClient = new QueryClient({
 });
 
 
+
 function App() {
 
   return (
     <>
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
-          <header>
-            <Link to="/">Home</Link>
+          <header className="app-header-container">
+            <NavLink to="/" className="app-header-link">HOME</NavLink>
+            <NavLink to="/wiki" className="app-header-link">WIKI</NavLink>
+            <NavLink to="/directory" className="app-header-link">DIRECTORY</NavLink>
+            <NavLink to="/dashboard" className="app-header-link">DASHBOARD</NavLink>
+            <NavLink to="/onboarding" className="app-header-link">ONBOARDING</NavLink>
           </header>
           <Routes>
             <Route path="/" element={<Home />} />

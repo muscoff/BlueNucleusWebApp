@@ -27,17 +27,6 @@
   background: var(--green);
 }
 
-h1 {
-  font-size: 70pt;
-  color: var(--primary-text);
-}
-
-h2 {
-  padding-left: 10pt;
-  margin-top: 10pt;
-  margin-bottom: 2pt;
-}
-
 table { 
   width: 50vw;
   border: 2px solid var(--primary-border); 

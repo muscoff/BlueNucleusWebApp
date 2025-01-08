@@ -35,14 +35,6 @@ function Directory() {
   const filterUsers = () => {
   };
 
-  const testUserProps = {
-    firstName: "Max",
-    lastName: "Mulder",
-    email: "max@gmail.com",
-    githubUsername: "MaxMulder",
-    isAdmin: false,
-  }
-
   return (
     <>
       <h1>Directory</h1>

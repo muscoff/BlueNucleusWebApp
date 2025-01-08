@@ -1,8 +1,15 @@
 :root { 
-  --primary-background: #f1e6d8;
+  --primary-background: #f3f6f8;
   --primary-darker-background: #c2b8ac;
   --primary-text: #1a1d20;
   --primary-border: #1a1d20;
+  --dark-navy: #181c2e;
+  --navy: #212740;
+  --light-navy: #2d324a;
+  --lighter-gray: #c8c8c8;
+  --light-gray: #1e1e1e;
+  --black: black;
+
   --purple: #bb99ff;
   --light-purple: #f2ebff;
   --light-yellow: #feffc6;
@@ -10,7 +17,7 @@
   --orange: #ff7901;
   --red: #f87c72;
   --green: #72f88f;
-  --light-gray: #e8e8e8;
+  --blue: #A2D0FA;
 }
 #root {
   width: 90vw;
@@ -22,6 +29,53 @@
 body {
   background: var(--primary-background);
   font-size: 14pt;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  margin: 50pt 0;
+  font-size: 100pt;
+  font-weight: 800;
+  font-family: 'ibm-plex-mono', sans-serif;
+  color: var(--navy);
+  letter-spacing: -0.08em;
+}
+
+h2 {
+  padding-left: 10pt;
+  margin-top: 10pt;
+  margin-bottom: 2pt;
+}
+
+.app-header-container {
+}
+
+.app-header-link {
+  margin: 0 1pt;
+  padding: 5pt 5pt 6pt 5pt;
+  border-radius: 2pt;
+  background: var(--lighter-gray);
+  backdrop-filter: blur(10px);
+  color: var(--white);
+  font-family: 'Roboto Mono', comic-sans, sans-serif;
+  font-weight: 300;
+  font-size: 10pt;
+}
+
+.active {
+  background: var(--navy);
+  color: white;
+}
+
+.app-header-link:hover {
+  background: var(--bright-yellow);
+  color: var(--primary-text);
 }
 
 /* 
@@ -86,21 +140,12 @@ a:hover {
   }
 }
 
-.NavButtonContainer.one {
-  background: var(--purple);
+.NavButtonContainer:nth-child(odd) {
+  background: var(--light-navy);
+  color: white;
 }
-.NavButtonContainer.two {
-  background: var(--orange);
-}
-.NavButtonContainer.three {
-  background: var(--light-purple);
-}
-.NavButtonContainer.four {
-  background: var(--bright-yellow);
-}
-.NavButtonContainer.five {
-  background: var(--green);
-}
-.NavButtonContainer.six {
-  background: var(--red);
+
+.NavButtonContainer:nth-child(even) {
+  background: var(--light-gray);
+  color: white;
 }
