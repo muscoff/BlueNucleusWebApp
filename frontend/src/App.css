@@ -6,6 +6,7 @@
   --dark-navy: #181c2e;
   --navy: #212740;
   --light-navy: #2d324a;
+  --lighter-navy: #959aad;
   --lighter-gray: #c8c8c8;
   --light-gray: #1e1e1e;
   --black: black;
@@ -19,12 +20,6 @@
   --green: #72f88f;
   --blue: #A2D0FA;
 }
-#root {
-  width: 90vw;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
 
 body {
   background: var(--primary-background);
@@ -35,22 +30,46 @@ body {
   width: 100%;
   margin: 0 auto;
   justify-content: center;
-  align-items: center;
+  align-items: start;
+}
+
+#root {
+  width: 90vw;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
 h1 {
-  margin: 50pt 0;
+  margin: 50pt 0 0 0;
   font-size: 100pt;
   font-weight: 800;
-  font-family: 'ibm-plex-mono', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: var(--navy);
-  letter-spacing: -0.08em;
+  letter-spacing: -0.05em;
 }
 
 h2 {
   padding-left: 10pt;
   margin-top: 10pt;
   margin-bottom: 2pt;
+}
+
+li, ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--primary-text);
+  font-style: bold;
+  font-size: 20pt;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-text);
 }
 
 .app-header-container {
@@ -68,14 +87,13 @@ h2 {
   font-size: 10pt;
 }
 
-.active {
-  background: var(--navy);
-  color: white;
-}
-
 .app-header-link:hover {
   background: var(--bright-yellow);
   color: var(--primary-text);
+}
+.active {
+  background: var(--navy);
+  color: white;
 }
 
 /* 
@@ -88,18 +106,18 @@ h2 {
 
 
 .NavButtonContainer {
-  display: flex;
-  width: 250pt;
-  height: 100pt;
-  margin: 10pt;
-  align-items: center;
-  justify-content: center;
-  background: var(--orange);
-  border: 1px solid var(--primary-border);
-  border-radius: 8pt;
+  display: grid;
+  place-items: center;
+  width: 200pt;
+  height: 50pt;
+  margin: 5pt;
+  border-radius: 4pt;
   box-shadow: 0 4px 6px rgba(0,0,0,0.4);
   opacity: 1;
   transition: all 0.3s ease;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 300;
+  font-size: 14pt;
 }
 
 .NavButtonContainer:hover {
@@ -109,24 +127,14 @@ h2 {
   background-color: #f0f0f0;
 }
 
-a {
-  color: var(--primary-text);
-  font-style: bold;
-  font-size: 20pt;
-  text-decoration: none;
-}
 
-a:hover {
-  color: var(--primary-background);
-}
 .NavButtonGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
+  place-items: center;
+  grid-template-columns: repeat(1, 1fr); 
   grid-template-rows: repeat(2, auto);
   width: 800px;
   margin: 0 auto; 
-  justify-content: center; 
-  align-items: center;
 }
 
 @media (max-width: 768px) { 

@@ -1,1 +1,78 @@
+.h1-subpage {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.1em;
+}
+
+.wiki-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  justify-content: center;
+  align-items: start;
+}
+
+.wiki-nav-container {
+  display: grid;
+  width: 100%;
+}
+
+.wiki-content-container {
+  display: grid;
+  width: 100%;
+}
+
+.wiki-content-description {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  border-bottom: 0.5px solid var(--primary-border);
+  align-items: center;
+  align-self: start; 
+  text-align: left; 
+  padding: 10pt 0 5pt 0;
+}
+
+.wiki-content-description > :nth-child(2) {
+  align-self: start; 
+  text-align: left; 
+}
+
+.wiki-list-item-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  border-bottom: 0.5px solid var(--primary-border);
+  align-items: center;
+  align-self: start; 
+  text-align: left; 
+  padding: 5pt;
+}
+
+.wiki-list-item-container:hover {
+  background-color: var(--purple);
+}
+
+.wiki-list-item-container:nth-child(1) {
+  border-top: 0.5px solid var(--primary-border);
+}
+
+.wiki-list-item-container > :nth-child(3) {
+  align-self: center; 
+  text-align: center; 
+}
+
+.wiki-filter-section-container {
+  display: grid;
+}
+
+
+.wiki-filter-section-container:first-child {
+  border-top: 0.5px solid var(--primary-border);
+}
+
+.wiki-filter-checkbox {
+  border: 0.5px solid var(--primary-border);
+  border-radius: 2pt;
+  width: 10pt;
+  height: 10pt;
+}
 

@@ -20,8 +20,6 @@ const queryClient = new QueryClient({
   },
 });
 
-
-
 function App() {
 
   return (
@@ -41,7 +39,6 @@ function App() {
             <Route path="/create-account" element={<CreateAccountWrapper />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/wiki" element={<Wiki />} />
-
             <Route path="/directory" element={<Directory />} />
             <Route path="/dashboard" element={<EmployeeDashboard />} />
           </Routes>

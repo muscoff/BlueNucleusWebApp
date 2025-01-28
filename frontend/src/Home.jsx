@@ -10,7 +10,7 @@ function NavButton({ location, text, idx }) {
 function Home() {
   return (
     <>
-      <h1>Blue Nucleus</h1>
+      <h1> Blue Nucleus </h1>
       <div className="NavButtonGrid">
         <NavButton location="/onboarding" text="Onboarding" idx="one" />
         <NavButton location="/wiki" text="Internal Wiki" idx="two" />
