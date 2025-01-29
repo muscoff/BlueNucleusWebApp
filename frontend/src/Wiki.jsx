@@ -2,20 +2,20 @@ import "./Wiki.css"
 
 function Wiki() {
 
-  const items = [
-    { publishDate: "2025.01.01", title: "React Fundamentals", type: "Blog" },
-    { publishDate: "2025.01.02", title: "Git Good With Github", type: "Blog" },
-    { publishDate: "2025.01.03", title: "Recommended Reading", type: "Tutorial" },
-    { publishDate: "2025.01.04", title: "What Makes A Good Engineer?", type: "Blog" },
-    { publishDate: "2025.01.05", title: "December 2024 Monthly Demos", type: "Video" },
-    { publishDate: "2025.01.06", title: "The Benefits of Payload", type: "Blog" },
-  ];
+  const WikiType = Object.freeze({
+    BLOG: "Blog",
+    VIDEO: "Video",
+    PROJECT: "Project",
+    TUTORIAL: "Tutorial"
+  });
 
-  const types = [
-    { type: "Blog" },
-    { type: "Video" },
-    { type: "Projects" },
-    { type: "Tutorial" },
+  const items = [
+    { publishDate: "2025.01.01", title: "React Fundamentals", type: WikiType.BLOG },
+    { publishDate: "2025.01.02", title: "Git Good With Github", type: WikiType.TUTORIAL },
+    { publishDate: "2025.01.03", title: "Recommended Reading", type: WikiType.BLOG },
+    { publishDate: "2025.01.04", title: "What Makes A Good Engineer?", type: WikiType.BLOG },
+    { publishDate: "2025.01.05", title: "December 2024 Monthly Demos", type: WikiType.VIDEO },
+    { publishDate: "2025.01.06", title: "The Benefits of Payload", type: WikiType.BLOG },
   ];
 
   return (
@@ -28,10 +28,10 @@ function Wiki() {
             <div> CLEAR FILTERS </div>
           </div>
           <ul>
-            {types.map((type, idx) => (
+            {Object.values(WikiType).map((typeName, idx) => (
               <li key={idx} className="wiki-filter-section-container">
                 <input type="checkbox" className="wiki-filter-checkbox" />
-                <label> {type.type} </label>
+                <label> {typeName} </label>
               </li>
             ))}
           </ul>
@@ -47,7 +47,7 @@ function Wiki() {
               <li key={idx} className="wiki-list-item-container">
                 <div className="publish-date"> {item.publishDate} </div>
                 <a href={`/wiki/${item.title}`}> {item.title} </a>
-                <div className="type"> {item.type} </div>
+                <div><div className="wiki-type-badge"> {item.type.toUpperCase()} </div></div>
               </li>
             ))}
           </ul>
