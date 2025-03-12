@@ -30,7 +30,7 @@ public class UserTaskController {
     this.userTaskService = userTaskService;
   }
 
-  @PostMapping("")
+  @PostMapping("/create")
   public ResponseEntity<UserTask> createUserTask(@RequestBody UserTask userTask) {
     try {
       logger.info("CREATING USERTASK WITH DATA {}", userTask);
@@ -41,7 +41,7 @@ public class UserTaskController {
     }
   }
 
-  @PutMapping("")
+  @PutMapping("/update")
   public ResponseEntity<UserTask> updateUserTask(@RequestBody UserTask userTask) {
     try {
       logger.info("UPDATING USERTASK WITH DATA {}", userTask);
@@ -52,7 +52,7 @@ public class UserTaskController {
     }
   }
 
-  @GetMapping("")
+  @GetMapping("/get")
   public ResponseEntity<List<UserTask>> getUserTasks() {
     try {
       List<UserTask> userTasks = userTaskService.getAllUserTasks();
@@ -62,7 +62,7 @@ public class UserTaskController {
     }
   }
 
-  @GetMapping("/userid")
+  @GetMapping("/get/userid")
   public ResponseEntity<UserTask> getSingleUserTask(@RequestParam(name="userid", required=true) String userid) {
     try {
       UserTask userTask = userTaskService.getSingleUserTask(userid);
@@ -73,7 +73,7 @@ public class UserTaskController {
     }
   }
 
-  @GetMapping("/{id}")
+  @GetMapping("/getSingle/{id}")
   public ResponseEntity<UserTask> getUserTask(@PathVariable int id) {
     try {
       UserTask userTask = userTaskService.getUserTaskById(id);
@@ -83,7 +83,7 @@ public class UserTaskController {
     }
   }
 
-  @DeleteMapping("/{id}")
+  @DeleteMapping("/delete/{id}")
   public ResponseEntity<Void> deleteUserTask(@PathVariable int id) {
     try {
       userTaskService.deleteUserTaskById(id);

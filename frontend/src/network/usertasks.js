@@ -4,7 +4,8 @@ const route = 'usertasks'
 
 export const getThisUserTask = async(userid, resFunc, errFunc) => {
     try {
-        const response = await fetch(geturl(`${route}/userid?userid=${userid}`))
+        const u_rl = `${geturl(route)}/userid?userid=${userid}`
+        const response = await fetch(u_rl)
         const data = await response.json()
         return resFunc(data)
     } catch (error) {

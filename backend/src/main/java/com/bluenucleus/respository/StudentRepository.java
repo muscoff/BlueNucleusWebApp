@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Integer> { 
-    @Query("SELECT s FROM Student s WHERE s.firstname > :firstname")
+    @Query("SELECT s FROM Student s WHERE s.firstname = :firstname")
     List<Student> getStudentByFirstName(String firstname);
 }

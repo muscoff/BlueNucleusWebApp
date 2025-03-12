@@ -30,7 +30,7 @@ public class CategoryController {
     this.categoryService = categoryService;
   }
 
-  @PostMapping("")
+  @PostMapping("/create")
   public ResponseEntity<Category> createCategory(@RequestBody Category category) {
     try {
       logger.info("CREATING Category WITH DATA {}", category);
@@ -41,10 +41,10 @@ public class CategoryController {
     }
   }
 
-  @PutMapping("")
+  @PutMapping("/update")
   public ResponseEntity<Category> updateCategory(@RequestBody Category category) {
     try {
-      logger.info("UPDATING USER WITH DATA {}", category);
+      logger.info("UPDATING CATEGORY WITH DATA {}", category);
       Category updatedCategory = categoryService.updateCategory(category);
       return new ResponseEntity<>(updatedCategory, HttpStatus.OK); 
     } catch (Exception e) {
@@ -52,7 +52,7 @@ public class CategoryController {
     }
   }
 
-  @GetMapping("")
+  @GetMapping("/get")
   public ResponseEntity<List<Category>> getCategories() {
     try {
       List<Category> categories = categoryService.getAllCategories();
@@ -62,7 +62,7 @@ public class CategoryController {
     }
   }
 
-  @GetMapping("/{id}")
+  @GetMapping("/getSingle/{id}")
   public ResponseEntity<Category> getCategory(@PathVariable int id) {
     try {
       Category category = categoryService.getCategoryById(id);
@@ -72,7 +72,7 @@ public class CategoryController {
     }
   }
 
-  @DeleteMapping("/{id}")
+  @DeleteMapping("/delete/{id}")
   public ResponseEntity<Void> deleteCategory(@PathVariable int id) {
     try {
       categoryService.deleteCategoryById(id);

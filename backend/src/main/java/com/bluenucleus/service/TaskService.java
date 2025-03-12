@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.NoSuchElementException; // I added this line 
+import java.util.NoSuchElementException;
 
 @Service
 public class TaskService {
@@ -26,8 +26,6 @@ public class TaskService {
   }
 
   public Task saveTask(Task task) {
-    // TODO: Deep dive lifecycle methods. @PrePersist and @PreUpdate may not 
-    // be necessary or work with the hibernate implementation.
     return this.taskRepository.save(task);
   }
 

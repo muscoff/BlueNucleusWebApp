@@ -24,10 +24,10 @@ public class Student {
   private int age;
 
   @Column(name = "created_at", nullable = false, updatable = false)
-  private LocalDateTime createdAt; // TODO: Deep dive why @Data isn't generating setters
+  private LocalDateTime createdAt;
 
   @Column(name = "updated_at", nullable = false)
-  private LocalDateTime updatedAt; // TODO: Deep dive why @Data isn't generating setters
+  private LocalDateTime updatedAt;
 
   @PrePersist
   protected void onCreate() {

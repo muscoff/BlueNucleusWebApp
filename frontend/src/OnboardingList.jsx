@@ -15,6 +15,8 @@ function OnboardingCell({ task, onClick }) {
   const [isComplete, setIsComplete] = useState(false)
 
   const handleButtonClick = () => {
+    const userid = localStorage.getItem('uid')
+    if(!userid) return console.log('no-user-id found')
     setIsComplete((prev) => !prev);
     onClick(task?.original_task, !isComplete ? 1 : 0)
   }

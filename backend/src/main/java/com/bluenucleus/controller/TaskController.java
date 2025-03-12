@@ -30,7 +30,7 @@ public class TaskController {
     this.taskService = taskService;
   }
 
-  @PostMapping("")
+  @PostMapping("/create")
   public ResponseEntity<Task> createTask(@RequestBody Task task) {
     try {
       logger.info("CREATING TASK WITH DATA {}", task);
@@ -41,7 +41,7 @@ public class TaskController {
     }
   }
 
-  @PutMapping("")
+  @PutMapping("/update")
   public ResponseEntity<Task> updateTask(@RequestBody Task task) {
     try {
       logger.info("UPDATING TASK WITH DATA {}", task);
@@ -52,7 +52,7 @@ public class TaskController {
     }
   }
 
-  @GetMapping("")
+  @GetMapping("/get")
   public ResponseEntity<List<Task>> getTasks() {
     try {
       List<Task> tasks = taskService.getAllTasks();
@@ -62,7 +62,7 @@ public class TaskController {
     }
   }
 
-  @GetMapping("/{id}")
+  @GetMapping("/getSingle/{id}")
   public ResponseEntity<Task> getTask(@PathVariable int id) {
     try {
       Task task = taskService.getTaskById(id);
@@ -72,7 +72,7 @@ public class TaskController {
     }
   }
 
-  @DeleteMapping("/{id}")
+  @DeleteMapping("/delete/{id}")
   public ResponseEntity<Void> deleteTask(@PathVariable int id) {
     try {
       taskService.deleteTaskById(id);
