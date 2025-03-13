@@ -11,6 +11,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException; // I added this line 
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
 @Service
 public class StudentService {
 
@@ -26,13 +29,10 @@ public class StudentService {
   }
 
   public Student getStudentById(int id) {
-    // return this.studentRepository.findById(id).get();
-    return this.studentRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Student not found with ID: " + id));
+    return this.studentRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found with ID: " + id));
   }
 
   public Student saveStudent(Student student) {
-    // TODO: Deep dive lifecycle methods. @PrePersist and @PreUpdate may not 
-    // be necessary or work with the hibernate implementation.
     if (student.getCreatedAt() == null) {
       student.setCreatedAt(LocalDateTime.now());
     }

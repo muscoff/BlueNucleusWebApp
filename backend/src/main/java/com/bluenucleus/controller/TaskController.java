@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/tasks")
@@ -36,8 +37,8 @@ public class TaskController {
       logger.info("CREATING TASK WITH DATA {}", task);
       Task createdTask = taskService.saveTask(task);
       return new ResponseEntity<>(createdTask, HttpStatus.CREATED); 
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
@@ -47,8 +48,8 @@ public class TaskController {
       logger.info("UPDATING TASK WITH DATA {}", task);
       Task updatedTask = taskService.updateTask(task);
       return new ResponseEntity<>(updatedTask, HttpStatus.OK); 
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
@@ -57,8 +58,8 @@ public class TaskController {
     try {
       List<Task> tasks = taskService.getAllTasks();
       return new ResponseEntity<List<Task>>(tasks, HttpStatus.OK);
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
@@ -67,8 +68,8 @@ public class TaskController {
     try {
       Task task = taskService.getTaskById(id);
       return new ResponseEntity<>(task, HttpStatus.OK);
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
@@ -77,8 +78,8 @@ public class TaskController {
     try {
       taskService.deleteTaskById(id);
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    } catch (Exception e) {
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 }

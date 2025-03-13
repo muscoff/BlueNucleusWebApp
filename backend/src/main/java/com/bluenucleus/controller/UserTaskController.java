@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/usertasks")
@@ -36,8 +37,8 @@ public class UserTaskController {
       logger.info("CREATING USERTASK WITH DATA {}", userTask);
       UserTask createdUserTask = userTaskService.saveUserTask(userTask);
       return new ResponseEntity<>(createdUserTask, HttpStatus.CREATED); 
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
@@ -47,8 +48,8 @@ public class UserTaskController {
       logger.info("UPDATING USERTASK WITH DATA {}", userTask);
       UserTask updatedUserTask = userTaskService.updateUserTask(userTask);
       return new ResponseEntity<>(updatedUserTask, HttpStatus.OK); 
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
@@ -57,8 +58,8 @@ public class UserTaskController {
     try {
       List<UserTask> userTasks = userTaskService.getAllUserTasks();
       return new ResponseEntity<List<UserTask>>(userTasks, HttpStatus.OK);
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
@@ -68,8 +69,8 @@ public class UserTaskController {
       UserTask userTask = userTaskService.getSingleUserTask(userid);
       logger.info("FETCHING USERTASK BASED ON userid {}", userTask);
       return new ResponseEntity<>(userTask, HttpStatus.OK);
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
@@ -78,8 +79,8 @@ public class UserTaskController {
     try {
       UserTask userTask = userTaskService.getUserTaskById(id);
       return new ResponseEntity<>(userTask, HttpStatus.OK);
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
@@ -88,8 +89,8 @@ public class UserTaskController {
     try {
       userTaskService.deleteUserTaskById(id);
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    } catch (Exception e) {
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 }

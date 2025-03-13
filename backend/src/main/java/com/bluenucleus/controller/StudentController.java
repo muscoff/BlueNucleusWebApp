@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/students")
@@ -30,66 +31,66 @@ public class StudentController {
     this.studentService = studentService;
   }
 
-  @PostMapping("")
+  @PostMapping("/create")
   public ResponseEntity<Student> createStudent(@RequestBody Student student) {
     try {
       logger.info("CREATING USER WITH DATA {}", student);
       Student createdStudent = studentService.saveStudent(student);
       return new ResponseEntity<>(createdStudent, HttpStatus.CREATED); 
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
-  @PutMapping("")
+  @PutMapping("/update")
   public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
     try {
       logger.info("UPDATING USER WITH DATA {}", student);
       Student updatedStudent = studentService.updateStudent(student);
       return new ResponseEntity<>(updatedStudent, HttpStatus.OK); 
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
-  @GetMapping("")
+  @GetMapping("/get")
   public ResponseEntity<List<Student>> getStudents() {
     try {
       List<Student> students = studentService.getAllStudents();
       return new ResponseEntity<List<Student>>(students, HttpStatus.OK);
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
-//   @GetMapping("/{id}")
-//   public ResponseEntity<Student> getStudent(@PathVariable int id) {
-//     try {
-//       Student student = studentService.getStudentById(id);
-//       return new ResponseEntity<>(student, HttpStatus.OK);
-//     } catch (Exception e) {
-//       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
-//     }
-//   }
+  @GetMapping("/getSingle/{id}")
+  public ResponseEntity<Student> getStudent(@PathVariable int id) {
+    try {
+      Student student = studentService.getStudentById(id);
+      return new ResponseEntity<>(student, HttpStatus.OK);
+    } catch (ResponseStatusException e) {
+      throw e;
+    }
+  }
 
-  @GetMapping("/firstname")
+  @GetMapping("/get/firstname")
   public ResponseEntity<List<Student>> getStudentByFirstName(@RequestParam(name="firstname", required=true) String firstname) {
     try {
       List<Student> students = studentService.getStudentByFirstName(firstname);
       logger.info("FETCHING STUDENT BASED ON FIRSTNAME {}", students);
       return new ResponseEntity<List<Student>>(students, HttpStatus.OK);
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
-  @DeleteMapping("/{id}")
+  @DeleteMapping("/delete/{id}")
   public ResponseEntity<Void> deleteStudent(@PathVariable int id) {
     try {
       studentService.deleteStudentById(id);
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    } catch (Exception e) {
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 }

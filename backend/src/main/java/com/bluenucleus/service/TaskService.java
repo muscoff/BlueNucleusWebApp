@@ -11,6 +11,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
 @Service
 public class TaskService {
 
@@ -22,7 +25,7 @@ public class TaskService {
   }
 
   public Task getTaskById(int id) {
-    return this.taskRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Task not found with ID: " + id));
+    return this.taskRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Task not found with ID: " + id));
   }
 
   public Task saveTask(Task task) {

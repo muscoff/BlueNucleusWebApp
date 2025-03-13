@@ -11,6 +11,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
 @Service
 public class CategoryService {
 
@@ -22,7 +25,8 @@ public class CategoryService {
   }
 
   public Category getCategoryById(int id) {
-    return this.categoryRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Category not found with ID: " + id));
+    // return this.categoryRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Category not found with ID: " + id));
+    return this.categoryRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found with ID: " + id));
   }
 
   public Category saveCategory(Category category) {

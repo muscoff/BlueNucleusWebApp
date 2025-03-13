@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/category")
@@ -36,8 +37,8 @@ public class CategoryController {
       logger.info("CREATING Category WITH DATA {}", category);
       Category createdCategory = categoryService.saveCategory(category);
       return new ResponseEntity<>(createdCategory, HttpStatus.CREATED); 
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
@@ -47,8 +48,8 @@ public class CategoryController {
       logger.info("UPDATING CATEGORY WITH DATA {}", category);
       Category updatedCategory = categoryService.updateCategory(category);
       return new ResponseEntity<>(updatedCategory, HttpStatus.OK); 
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
@@ -57,8 +58,8 @@ public class CategoryController {
     try {
       List<Category> categories = categoryService.getAllCategories();
       return new ResponseEntity<List<Category>>(categories, HttpStatus.OK);
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
@@ -67,8 +68,8 @@ public class CategoryController {
     try {
       Category category = categoryService.getCategoryById(id);
       return new ResponseEntity<>(category, HttpStatus.OK);
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 
@@ -77,8 +78,8 @@ public class CategoryController {
     try {
       categoryService.deleteCategoryById(id);
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    } catch (Exception e) {
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // TODO: Update to more specific error message
+    } catch (ResponseStatusException e) {
+      throw e;
     }
   }
 }
