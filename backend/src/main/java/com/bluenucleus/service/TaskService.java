@@ -13,6 +13,7 @@ import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
+import com.bluenucleus.dto.TaskCategoryDTO; // this can be import com.bluenucleus.model.TaskCategoryDTO;
 
 @Service
 public class TaskService {
@@ -22,6 +23,10 @@ public class TaskService {
 
   public List<Task> getAllTasks() {
     return this.taskRepository.findAll();
+  }
+
+  public List<TaskCategoryDTO> getTaskCategoryDetails() {
+    return taskRepository.findTaskCategoryDetails();
   }
 
   public Task getTaskById(int id) {

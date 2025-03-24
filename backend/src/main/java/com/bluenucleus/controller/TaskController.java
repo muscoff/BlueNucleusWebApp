@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import org.springframework.web.server.ResponseStatusException;
+import com.bluenucleus.dto.TaskCategoryDTO;
 
 @RestController
 @RequestMapping("/api/tasks")
@@ -51,6 +52,11 @@ public class TaskController {
     } catch (ResponseStatusException e) {
       throw e;
     }
+  }
+
+  @GetMapping("/get/category")
+  public List<TaskCategoryDTO> getTaskCategoryDetails() {
+    return taskService.getTaskCategoryDetails();
   }
 
   @GetMapping("/get")

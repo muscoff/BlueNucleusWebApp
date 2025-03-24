@@ -2,7 +2,7 @@ import { geturl, getsingleurl, posturl, puturl, deleteurl } from './url'
 
 const route = 'usertasks'
 
-export const getThisUserTask = async(userid, resFunc, errFunc) => {
+export const getUserTask = async(userid, resFunc, errFunc) => {
     try {
         const u_rl = `${geturl(route)}/userid?userid=${userid}`
         const response = await fetch(u_rl)
@@ -14,7 +14,7 @@ export const getThisUserTask = async(userid, resFunc, errFunc) => {
     }
 }
 
-export const getUserTask = async(id, resFunc, errFunc) => {
+export const getUserTaskId = async(id, resFunc, errFunc) => {
     try {
         const response = await fetch(getsingleurl(route, id))
         const data = await response.json()

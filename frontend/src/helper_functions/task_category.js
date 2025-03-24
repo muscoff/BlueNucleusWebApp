@@ -46,3 +46,17 @@ export const returnTaskCategoryGroups = (data = []) => {
     keys.forEach(key=>arr.push({name: key, status: results[key]['status'], data: results[key]['data']}))
     return arr
 }
+
+export const returnTaskCategoryDetails = (tasks = []) => {
+    if (tasks.length === 0) return []
+
+    const generalTasks = []
+    const specificTasks = []
+
+    tasks.forEach(item => {
+        if(item.taskIsActive === 1) generalTasks.push(item)
+        else specificTasks.push(item) 
+    })
+
+    return [generalTasks, specificTasks]
+}
