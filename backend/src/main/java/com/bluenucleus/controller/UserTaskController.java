@@ -19,12 +19,24 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import org.springframework.web.server.ResponseStatusException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.bluenucleus.model.UserTaskDetail;
+import java.util.ArrayList;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.bluenucleus.service.TaskService;
+import com.bluenucleus.dto.TaskCategoryDTO;
+import java.util.Map;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/api/usertasks")
 public class UserTaskController {
 
   private final UserTaskService userTaskService;
+  @Autowired
+  private TaskService taskService;
+  
   private static final Logger logger = LoggerFactory.getLogger(UserTaskController.class);
 
   public UserTaskController(UserTaskService userTaskService) {
@@ -71,6 +83,94 @@ public class UserTaskController {
       return new ResponseEntity<>(userTask, HttpStatus.OK);
     } catch (ResponseStatusException e) {
       throw e;
+    }
+  }
+
+  @GetMapping("/get/detailuserid")
+  public ResponseEntity<Map<String, Object>> getDetailUserTask(@RequestParam(name="userid", required=true) String userid) {
+    try {
+      UserTask userTask = userTaskService.getSingleUserTask(userid);
+
+      if (userTask == null) {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+
+      if (userTask.getTaskids() != null && !userTask.getTaskids().isEmpty()) {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+          List<UserTaskDetail> taskDetails = objectMapper.readValue(userTask.getTaskids(), objectMapper.getTypeFactory().constructCollectionType(List.class, UserTaskDetail.class));
+          userTask.setTaskDetails(taskDetails);
+
+        } catch (JsonProcessingException e) {
+          e.printStackTrace();
+          return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+      }
+
+      if (userTask.getTaskDetails() == null) {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+      
+      List<TaskCategoryDTO> taskCategoryDetails = taskService.getTaskCategoryDetails();
+
+      List<Map<String, Object>> matchedData = new ArrayList<>();
+      List<Map<String, Object>> generalTaskData = new ArrayList<>();
+
+      List<Integer> taskIdList = new ArrayList<>();
+
+      for (UserTaskDetail taskDetail : userTask.getTaskDetails()) {
+        for (TaskCategoryDTO taskCategory : taskCategoryDetails) {
+          if (taskDetail.getTaskid() == taskCategory.getTaskId()) {
+            Map<String, Object> combinedData = new HashMap<>();
+            combinedData.put("catId", taskCategory.getCatId());
+            combinedData.put("category", taskCategory.getCategory());
+            combinedData.put("description", taskCategory.getDescription());
+            combinedData.put("status", taskCategory.getStatus());
+            combinedData.put("taskId", taskCategory.getTaskId());
+            combinedData.put("taskIsActive", taskCategory.getTaskIsActive());
+            combinedData.put("taskTitle", taskCategory.getTaskTitle());
+            combinedData.put("completed", taskDetail.getCompleted());
+            combinedData.put("is_active", taskDetail.getIs_active());
+
+            matchedData.add(combinedData);
+
+            taskIdList.add(taskCategory.getTaskId());
+          }
+        }
+      }
+
+      for (TaskCategoryDTO taskCategory : taskCategoryDetails) {
+        if (!taskIdList.contains(taskCategory.getTaskId())){
+          if(taskCategory.getTaskIsActive() == 1){
+            Map<String, Object> objData = new HashMap<>();
+            objData.put("catId", taskCategory.getCatId());
+            objData.put("category", taskCategory.getCategory());
+            objData.put("description", taskCategory.getDescription());
+            objData.put("status", taskCategory.getStatus());
+            objData.put("taskId", taskCategory.getTaskId());
+            objData.put("taskIsActive", taskCategory.getTaskIsActive());
+            objData.put("taskTitle", taskCategory.getTaskTitle());
+
+            generalTaskData.add(objData);
+          }
+        }
+      }
+
+      Map<String, Object> response = new HashMap<>();
+      response.put("id", userTask.getId());
+      response.put("taskDetails", userTask.getTaskDetails());
+      response.put("taskids", userTask.getTaskids());
+      response.put("userid", userTask.getUserid());
+      response.put("data", matchedData);
+      response.put("generalData", generalTaskData);
+
+      return new ResponseEntity<>(response, HttpStatus.OK);
+    } catch (ResponseStatusException e) {
+      throw e;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
