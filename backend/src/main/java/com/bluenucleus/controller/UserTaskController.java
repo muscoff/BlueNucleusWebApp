@@ -86,7 +86,7 @@ public class UserTaskController {
     }
   }
 
-  @GetMapping("/get/detailuserid")
+  @GetMapping("/get/tasks")
   public ResponseEntity<Map<String, Object>> getDetailUserTask(@RequestParam(name="userid", required=true) String userid) {
     try {
       UserTask userTask = userTaskService.getSingleUserTask(userid);
@@ -115,7 +115,6 @@ public class UserTaskController {
       List<TaskCategoryDTO> taskCategoryDetails = taskService.getTaskCategoryDetails();
 
       List<Map<String, Object>> matchedData = new ArrayList<>();
-      List<Map<String, Object>> generalTaskData = new ArrayList<>();
 
       List<Integer> taskIdList = new ArrayList<>();
 
@@ -123,7 +122,7 @@ public class UserTaskController {
         for (TaskCategoryDTO taskCategory : taskCategoryDetails) {
           if (taskDetail.getTaskid() == taskCategory.getTaskId()) {
             Map<String, Object> combinedData = new HashMap<>();
-            combinedData.put("catId", taskCategory.getCatId());
+            combinedData.put("categoryId", taskCategory.getCatId());
             combinedData.put("category", taskCategory.getCategory());
             combinedData.put("description", taskCategory.getDescription());
             combinedData.put("status", taskCategory.getStatus());
@@ -131,7 +130,7 @@ public class UserTaskController {
             combinedData.put("taskIsActive", taskCategory.getTaskIsActive());
             combinedData.put("taskTitle", taskCategory.getTaskTitle());
             combinedData.put("completed", taskDetail.getCompleted());
-            combinedData.put("is_active", taskDetail.getIs_active());
+            combinedData.put("is_active", taskDetail.getIsActive());
 
             matchedData.add(combinedData);
 
@@ -144,7 +143,7 @@ public class UserTaskController {
         if (!taskIdList.contains(taskCategory.getTaskId())){
           if(taskCategory.getTaskIsActive() == 1){
             Map<String, Object> objData = new HashMap<>();
-            objData.put("catId", taskCategory.getCatId());
+            objData.put("categoryId", taskCategory.getCatId());
             objData.put("category", taskCategory.getCategory());
             objData.put("description", taskCategory.getDescription());
             objData.put("status", taskCategory.getStatus());
@@ -152,18 +151,16 @@ public class UserTaskController {
             objData.put("taskIsActive", taskCategory.getTaskIsActive());
             objData.put("taskTitle", taskCategory.getTaskTitle());
 
-            generalTaskData.add(objData);
+            matchedData.add(objData);
           }
         }
       }
 
       Map<String, Object> response = new HashMap<>();
       response.put("id", userTask.getId());
-      response.put("taskDetails", userTask.getTaskDetails());
-      response.put("taskids", userTask.getTaskids());
+      response.put("assignedUserTasks", userTask.getTaskDetails());
       response.put("userid", userTask.getUserid());
       response.put("data", matchedData);
-      response.put("generalData", generalTaskData);
 
       return new ResponseEntity<>(response, HttpStatus.OK);
     } catch (ResponseStatusException e) {
