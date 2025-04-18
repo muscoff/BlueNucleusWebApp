@@ -5,7 +5,7 @@ USE `bluenucleus`;
 CREATE TABLE IF NOT EXISTS `users` ( 
   
   `id` INT NOT NULL AUTO_INCREMENT,
-  `firebase_id` VARCHAR(255) NOT NULL,
+  `firebase_id` VARCHAR(255) NOT NULL UNIQUE,
   `username` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `first_name` VARCHAR(255) NOT NULL,
